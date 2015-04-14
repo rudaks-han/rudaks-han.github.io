@@ -74,7 +74,8 @@
 			//console.error('insertBefore : ' + e.mediaElement);
 			//console.error('e.mediaElement : ' + e.mediaElement.innerHTML);
 			console.error('111 : ' + $(e.mediaElement));
-			$('#videos-container').insertBefore(e.mediaElement);
+			//$('#videos-container').insertBefore(e.mediaElement);
+			$('#videos-container').insertBefore($(e.mediaElement));
             scaleVideos();
         };
 

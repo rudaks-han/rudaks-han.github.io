@@ -71,7 +71,7 @@
         connection.onstream = function(e) {
             e.mediaElement.width = 600;
             videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
-			console.error('insertBefore');
+			console.error('insertBefore : ' + e.mediaElement);
 			//console.error('e.mediaElement : ' + e.mediaElement.innerHTML);
 			//$('#videos-container').insertBefore(e.mediaElement);
             scaleVideos();

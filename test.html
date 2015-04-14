@@ -40,7 +40,7 @@
                 </span>
 
                 <input type="text" id="broadcast-name">
-                <button id="setup-new-broadcast" class="setup">Share Your Screen</button>
+                <button id="setup-new-broadcast" class="setup">화면공유</button>
             </section>
 
             <!-- list of all available broadcasting rooms -->
@@ -119,6 +119,8 @@
         var videosContainer = document.getElementById('videos-container') || document.body;
         var roomsList = document.getElementById('rooms-list');
 
+		document.getElementById('broadcast-name').value = Math.floor(Math.random()*1000000);
+		
         document.getElementById('setup-new-broadcast').onclick = function() {
             this.disabled = true;
             connection.extra = {
@@ -140,17 +142,20 @@
 
         (function() {
             var uniqueToken = document.getElementById('unique-token');
-        
             if (uniqueToken)
+				/*
                 if (location.hash.length > 2) 
-                {
-                    uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
-                }
-                else
-                {
-                    uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
-                }
+				{
+					uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
+				}
+                else 
+				{
+					uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
+				}
+				*/
+				uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
         })();
+		
 
         function scaleVideos() {
             var videos = document.querySelectorAll('video'),

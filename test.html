@@ -5,24 +5,6 @@
     <title>WebRTC Screen Share</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" href="//cdn.webrtc-experiment.com/style.css">
-
-    <style>
-    audio,
-    video {
-        -moz-transition: all 1s ease;
-        -ms-transition: all 1s ease;
-        -o-transition: all 1s ease;
-        -webkit-transition: all 1s ease;
-        transition: all 1s ease;
-        vertical-align: top;
-        width: 100%;
-    }
-   
-    </style>
-   
     <script src="//cdn.webrtc-experiment.com/RTCMultiConnection.js"></script>
 </head>
 
@@ -30,14 +12,6 @@
         <!-- just copy this <section> and next script -->
         <section class="experiment">
             <section>
-                <span>
-                    Private ??
-                    <a href="" target="_blank" title="Open this link in new tab. Then your room will be private!">
-                        <code>
-                            <strong id="unique-token">#123456789</strong>
-                        </code>
-                    </a>
-                </span>
 
                 <input type="text" id="broadcast-name">
                 <button id="setup-new-broadcast" class="setup">화면공유</button>
@@ -70,22 +44,11 @@
         connection.onstream = function(e) {
             e.mediaElement.width = 600;
             videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
-            rotateVideo(e.mediaElement);
             scaleVideos();
         };
 
-        function rotateVideo(mediaElement) {
-		/*
-            mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-            setTimeout(function() {
-                mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-            }, 1000);
-			*/
-        }
-
         connection.onstreamended = function(e) {
             e.mediaElement.style.opacity = 0;
-            rotateVideo(e.mediaElement);
             setTimeout(function() {
                 if (e.mediaElement.parentNode) {
                     e.mediaElement.parentNode.removeChild(e.mediaElement);
@@ -129,8 +92,6 @@
                 'session-name': document.getElementById('broadcast-name').value || 'Anonymous'
             };
 
-            // screen sender don't need to receive any media.
-            // so both media-lines must be "sendonly".
             connection.sdpConstraints.mandatory = {
                 OfferToReceiveAudio: false,
                 OfferToReceiveVideo: false

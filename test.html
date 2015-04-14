@@ -24,6 +24,7 @@
     </style>
    
     <script src="//cdn.webrtc-experiment.com/RTCMultiConnection.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 
 <body>
@@ -69,7 +70,8 @@
 
         connection.onstream = function(e) {
             e.mediaElement.width = 600;
-            videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
+            //videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
+			$('#videos-container').insertBefore(e.mediaElement);
             scaleVideos();
         };
 

@@ -70,13 +70,6 @@
 
         connection.onstream = function(e) {
             e.mediaElement.width = 600;
-            //videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
-			//console.error('insertBefore : ' + e.mediaElement);
-			//console.error('e.mediaElement : ' + e.mediaElement.innerHTML);
-			//console.error('111 : ' + e.mediaElement.innerHTML);
-			//console.error('2 : ' + $(e.mediaElement).html());
-			//$('#videos-container').insertBefore(e.mediaElement);
-			//$('#videos-container').insertBefore($(e.mediaElement));
 			$(e.mediaElement).appendTo('#videos-container');
             scaleVideos();
         };
@@ -84,9 +77,10 @@
         connection.onstreamended = function(e) {
             e.mediaElement.style.opacity = 0;
             setTimeout(function() {
-                if (e.mediaElement.parentNode) {
-                    e.mediaElement.parentNode.removeChild(e.mediaElement);
-                }
+				$(e.mediaElement).remove();
+                //if (e.mediaElement.parentNode) {
+                   // e.mediaElement.parentNode.removeChild(e.mediaElement);
+                //}
                 scaleVideos();
             }, 1000);
         };

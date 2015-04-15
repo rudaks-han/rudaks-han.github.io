@@ -89,11 +89,12 @@
 			
 			html += '아래 URL을 복사하여 공유하려는 사람에게 전달하세요.';
 			html += '<br />';
-			html += '<input type="text" style="width:50%" value="' + location.href + '" />';
+			html += '<input type="text" style="width:500px" value="' + location.href + '" />';
 			
 			$('#rooms-list').append(html);
 			
 			$('#share-link').hide();
+			$('#setup-new-broadcast').hide();
 			
 			var joinRoomButton = $('#rooms-list').find('.join');
 			joinRoomButton.attr('data-sessionid', session.sessionid);

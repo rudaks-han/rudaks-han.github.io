@@ -56,6 +56,11 @@
 
         connection.onstream = function(e) {
 			console.error('connection.onstream');
+			
+			//$('#main').prepend(location.href);
+			$('#setup-new-broadcast').hide();
+			$('#share-link').show();
+			
             e.mediaElement.width = 600;
 			$(e.mediaElement).appendTo('#videos-container');
             scaleVideos();
@@ -123,7 +128,7 @@
 				//uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
 				//$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
 			//}
-			$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
+			$('#main').append('<a href="' + location.href + '" id="share-link" target="_blank" class="hide">링크 공유</a>');
         })();
 		
 

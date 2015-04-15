@@ -73,10 +73,11 @@
             //videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
 			//console.error('insertBefore : ' + e.mediaElement);
 			//console.error('e.mediaElement : ' + e.mediaElement.innerHTML);
-			console.error('111 : ' + e.mediaElement.innerHTML);
-			console.error('2 : ' + $(e.mediaElement).html());
+			//console.error('111 : ' + e.mediaElement.innerHTML);
+			//console.error('2 : ' + $(e.mediaElement).html());
 			//$('#videos-container').insertBefore(e.mediaElement);
 			//$('#videos-container').insertBefore($(e.mediaElement));
+			$(e.mediaElement).appendTo('#videos-container');
             scaleVideos();
         };
 

@@ -81,9 +81,13 @@
             if (sessions[session.sessionid]) return;
             sessions[session.sessionid] = session;
 
-			var html = session.extra['session-name'] + ' ';
+			var html = ''; //session.extra['session-name'] + ' ';
 			//html += '<button class="join">View His Screen</button>';
-			html += '<a href="javascript:;" class="join">View His Screen</a>';
+			html += '<a href="javascript:;" class="join">화면보기</a>';
+			
+			html += 'URL을 복사하여 공유하려는 사람에게 전달하세요.';
+			html += '<br />';
+			html += location.href;
 			
 			$('#rooms-list').append(html);
 			
@@ -128,7 +132,7 @@
 				//uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
 				//$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
 			//}
-			$('#main').append('<a href="' + location.href + '" id="share-link" target="_blank" class="hide">링크 공유</a>');
+			$('#main').append('<a href="' + location.href + '" id="share-link" target="_blank" style="display:none">링크 공유</a>');
         })();
 		
 

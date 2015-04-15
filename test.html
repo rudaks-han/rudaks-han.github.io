@@ -29,13 +29,15 @@
 
 <body>
         <div id="main">
-			<input type="text" id="broadcast-name">
+			<input type="text" id="broadcast-name" style="display:none">
 			<a href="javascript:;" id="setup-new-broadcast">화면공유</a>
 		</div>
 		
-            <table style="width: 100%;" id="rooms-list"></table>
+		<div id="rooms-list"></div>
+		
+            <!--<table style="width: 100%;" id="rooms-list"></table>-->
 
-            <div id="videos-container"></div>
+        <div id="videos-container"></div>
         
         <script>
         var connection = new RTCMultiConnection();

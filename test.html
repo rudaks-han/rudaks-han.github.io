@@ -28,7 +28,9 @@
 </head>
 
 <body>
-        <!-- just copy this <section> and next script -->
+        <div id="main">
+		</div>
+		
         <section class="experiment">
             <section>
                 <span>
@@ -78,9 +80,6 @@
             e.mediaElement.style.opacity = 0;
             setTimeout(function() {
 				$(e.mediaElement).remove();
-                //if (e.mediaElement.parentNode) {
-                   // e.mediaElement.parentNode.removeChild(e.mediaElement);
-                //}
                 scaleVideos();
             }, 1000);
         };
@@ -95,20 +94,11 @@
 			
 			$('#rooms-list').append(html);
 			
-			/*
-            var tr = document.createElement('tr');
-            tr.innerHTML = '<td><strong>' + session.extra['session-name'] + '</strong> is sharing his screen!</td>' +
-                '<td><button class="join">View His Screen</button></td>';
-            roomsList.insertBefore(tr, roomsList.firstChild);
-			*/
-			
-            //var joinRoomButton = tr.querySelector('.join');
 			var joinRoomButton = $('#rooms-list').find('.join');
 			joinRoomButton.attr('data-sessionid', session.sessionid);
 			joinRoomButton.on('click', function() {
 				$(this).disabled = true;
 
-                //var sessionid = this.getAttribute('data-sessionid');
 				var sessionid = $(this).attr('data-sessionid');
                 session = sessions[sessionid];
 
@@ -117,25 +107,8 @@
                 session.join();
 			});
 			
-			/*
-            joinRoomButton.setAttribute('data-sessionid', session.sessionid);
-            joinRoomButton.onclick = function() {
-                this.disabled = true;
-
-                var sessionid = this.getAttribute('data-sessionid');
-                session = sessions[sessionid];
-
-                if (!session) throw 'No such session exists.';
-
-                session.join();
-            };
-			*/
         };
 
-        //var videosContainer = document.getElementById('videos-container') || document.body;
-        //var roomsList = document.getElementById('rooms-list');
-
-		//document.getElementById('broadcast-name').value = Math.floor(Math.random()*1000000);
 		$('#broadcast-name').val(Math.floor(Math.random()*1000000));
 		
 		$('#setup-new-broadcast').on('click' , function() {
@@ -152,41 +125,16 @@
             connection.open();
 		});
 		
-		/*
-        document.getElementById('setup-new-broadcast').onclick = function() {
-            this.disabled = true;
-            connection.extra = {
-                'session-name': document.getElementById('broadcast-name').value || 'Anonymous'
-            };
-
-            connection.sdpConstraints.mandatory = {
-                OfferToReceiveAudio: false,
-                OfferToReceiveVideo: false
-            };
-
-            connection.open();
-        };
-		*/
-
         // setup signaling to search existing sessions
         connection.connect();
 
         (function() {
-            //var uniqueToken = document.getElementById('unique-token');
 			var uniqueToken = $('#unique-token');
             if (uniqueToken.length)
-				/*
-                if (location.hash.length > 2) 
-				{
-					uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
-				}
-                else 
-				{
-					uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
-				}
-				*/
-				//uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
-				uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
+			{
+				//uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
+				$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
+			}
         })();
 		
 

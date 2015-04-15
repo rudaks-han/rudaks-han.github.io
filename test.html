@@ -90,12 +90,34 @@
             if (sessions[session.sessionid]) return;
             sessions[session.sessionid] = session;
 
+			var html = session.extra['session-name'] + ' ';
+			html += '<button class="join">View His Screen</button>';
+			
+			$('#rooms-list').append(html);
+			
+			/*
             var tr = document.createElement('tr');
             tr.innerHTML = '<td><strong>' + session.extra['session-name'] + '</strong> is sharing his screen!</td>' +
                 '<td><button class="join">View His Screen</button></td>';
             roomsList.insertBefore(tr, roomsList.firstChild);
+			*/
+			
+            //var joinRoomButton = tr.querySelector('.join');
+			var joinRoomButton = $('#rooms-list').find('.join');
+			joinRoomButton.attr('data-sessionid', session.sessionid);
+			joinRoomButton.on('click', function() {
+				$(this).disabled = true;
 
-            var joinRoomButton = tr.querySelector('.join');
+                //var sessionid = this.getAttribute('data-sessionid');
+				var sessionid = $(this).attr('data-sessionid');
+                session = sessions[sessionid];
+
+                if (!session) throw 'No such session exists.';
+
+                session.join();
+			});
+			
+			/*
             joinRoomButton.setAttribute('data-sessionid', session.sessionid);
             joinRoomButton.onclick = function() {
                 this.disabled = true;
@@ -107,6 +129,7 @@
 
                 session.join();
             };
+			*/
         };
 
         var videosContainer = document.getElementById('videos-container') || document.body;

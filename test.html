@@ -33,30 +33,10 @@
 			<a href="javascript:;" id="setup-new-broadcast">화면공유</a>
 		</div>
 		
-        <section class="experiment">
-            <section>
-			<!--
-                <span>
-                    
-                    <a href="" target="_blank" title="Open this link in new tab. Then your room will be private!">
-                        <code>
-                            <strong id="unique-token">#123456789</strong>
-                        </code>
-                    </a>
-                </span>
-				-->
-                <!--<input type="text" id="broadcast-name">-->
-                <!--<button id="setup-new-broadcast" class="setup">화면공유</button>--?
-				
-            </section>
-
-            <!-- list of all available broadcasting rooms -->
             <table style="width: 100%;" id="rooms-list"></table>
 
-            <!-- local/remote videos container -->
             <div id="videos-container"></div>
-        </section>
-
+        
         <script>
         var connection = new RTCMultiConnection();
 
@@ -75,12 +55,14 @@
         };
 
         connection.onstream = function(e) {
+			console.error('connection.onstream');
             e.mediaElement.width = 600;
 			$(e.mediaElement).appendTo('#videos-container');
             scaleVideos();
         };
 
         connection.onstreamended = function(e) {
+			console.error('connection.onstreamended');
             e.mediaElement.style.opacity = 0;
             setTimeout(function() {
 				$(e.mediaElement).remove();
@@ -90,11 +72,13 @@
 
         var sessions = {};
         connection.onNewSession = function(session) {
+			console.error('connection.onNewSession');
             if (sessions[session.sessionid]) return;
             sessions[session.sessionid] = session;
 
 			var html = session.extra['session-name'] + ' ';
-			html += '<button class="join">View His Screen</button>';
+			//html += '<button class="join">View His Screen</button>';
+			html += '<a href="javascript:;" class="join">View His Screen</a>';
 			
 			$('#rooms-list').append(html);
 			

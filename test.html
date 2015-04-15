@@ -29,21 +29,25 @@
 
 <body>
         <div id="main">
+			<input type="text" id="broadcast-name">
+			<a href="#" id="setup-new-broadcast">화면공유</a>
 		</div>
 		
         <section class="experiment">
             <section>
+			<!--
                 <span>
-                    Private ??
+                    
                     <a href="" target="_blank" title="Open this link in new tab. Then your room will be private!">
                         <code>
                             <strong id="unique-token">#123456789</strong>
                         </code>
                     </a>
                 </span>
-
-                <input type="text" id="broadcast-name">
-                <button id="setup-new-broadcast" class="setup">화면공유</button>
+				-->
+                <!--<input type="text" id="broadcast-name">-->
+                <!--<button id="setup-new-broadcast" class="setup">화면공유</button>--?
+				
             </section>
 
             <!-- list of all available broadcasting rooms -->
@@ -129,12 +133,13 @@
         connection.connect();
 
         (function() {
-			var uniqueToken = $('#unique-token');
-            if (uniqueToken.length)
-			{
+			//var uniqueToken = $('#unique-token');
+            //if (uniqueToken.length)
+			//{
 				//uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
-				$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
-			}
+				//$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
+			//}
+			$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
         })();
 		
 

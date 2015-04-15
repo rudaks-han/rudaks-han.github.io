@@ -83,13 +83,15 @@
 
 			var html = ''; //session.extra['session-name'] + ' ';
 			//html += '<button class="join">View His Screen</button>';
-			html += '<a href="javascript:;" class="join">화면보기</a>';
+			html += '[<a href="javascript:;" class="join">화면보기</a>] ';
 			
-			html += 'URL을 복사하여 공유하려는 사람에게 전달하세요.';
+			html += '아래 URL을 복사하여 공유하려는 사람에게 전달하세요.';
 			html += '<br />';
-			html += location.href;
+			html += '<input type="text" style="width:50%" value="' + location.href + '" />';
 			
 			$('#rooms-list').append(html);
+			
+			$('#share-link').hide();
 			
 			var joinRoomButton = $('#rooms-list').find('.join');
 			joinRoomButton.attr('data-sessionid', session.sessionid);

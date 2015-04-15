@@ -139,7 +139,7 @@
 		$('#broadcast-name').val(Math.floor(Math.random()*1000000));
 		
 		$('#setup-new-broadcast').on('click' , function() {
-			$(this).disable();
+			$(this).attr('disabled', true);
 			connection.extra = {
                 'session-name': $('#broadcast-name').val() || 'Anonymous'
             };

@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="//cdn.webrtc-experiment.com/style.css">
 
     <style>
-	body {font-size:11px;}
+	body {font-size:12px;}
+	#main {margin-top: 10px; text-align:center;}
     audio,
     video {
         -moz-transition: all 1s ease;
@@ -139,7 +140,7 @@
 				//uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
 				//$('#main').append('<a href="' + location.href + '" target="_blank">링크 공유</a>');
 			//}
-			$('#main').append('[<a href="' + location.href + '" id="share-link" target="_blank" style="display:none">링크 공유</a>] 다른 사람에게 화면을 공유하실려면 클릭하세요.');
+			$('#main').append('<span id="share-link">[<a href="' + location.href + '" target="_blank" style="display:none">링크 공유</a>] 다른 사람에게 화면을 공유하실려면 클릭하세요.</span>');
         })();
 		
 

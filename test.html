@@ -132,11 +132,27 @@
 			*/
         };
 
-        var videosContainer = document.getElementById('videos-container') || document.body;
-        var roomsList = document.getElementById('rooms-list');
+        //var videosContainer = document.getElementById('videos-container') || document.body;
+        //var roomsList = document.getElementById('rooms-list');
 
-		document.getElementById('broadcast-name').value = Math.floor(Math.random()*1000000);
+		//document.getElementById('broadcast-name').value = Math.floor(Math.random()*1000000);
+		$('#broadcast-name').val(Math.floor(Math.random()*1000000));
 		
+		$('#setup-new-broadcast').on('click' , function() {
+			$(this).disable();
+			connection.extra = {
+                'session-name': $('#broadcast-name').val() || 'Anonymous'
+            };
+			
+			connection.sdpConstraints.mandatory = {
+                OfferToReceiveAudio: false,
+                OfferToReceiveVideo: false
+            };
+
+            connection.open();
+		});
+		
+		/*
         document.getElementById('setup-new-broadcast').onclick = function() {
             this.disabled = true;
             connection.extra = {
@@ -150,13 +166,15 @@
 
             connection.open();
         };
+		*/
 
         // setup signaling to search existing sessions
         connection.connect();
 
         (function() {
-            var uniqueToken = document.getElementById('unique-token');
-            if (uniqueToken)
+            //var uniqueToken = document.getElementById('unique-token');
+			var uniqueToken = $('#unique-token');
+            if (uniqueToken.length)
 				/*
                 if (location.hash.length > 2) 
 				{
@@ -167,7 +185,8 @@
 					uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
 				}
 				*/
-				uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
+				//uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
+				uniqueToken.parent().parent().parent().html('<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>');
         })();
 		
 

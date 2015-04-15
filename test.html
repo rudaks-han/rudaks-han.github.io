@@ -32,7 +32,7 @@
 <body>
         <div id="main">
 			<input type="text" id="broadcast-name" style="display:none">
-			[<a href="javascript:;" id="setup-new-broadcast">화면 공유</a>] 화면공유를 하시려면 클릭하세요.
+			<span id="screen-share">[<a href="javascript:;" id="setup-new-broadcast">화면 공유</a>] 화면공유를 하시려면 클릭하세요.</span>
 		</div>
 		
 		<div id="rooms-list"></div>
@@ -62,7 +62,7 @@
 			console.error('connection.onstream');
 			
 			//$('#main').prepend(location.href);
-			$('#setup-new-broadcast').hide();
+			$('#screen-share').hide();
 			$('#share-link').show();
 			
             e.mediaElement.width = 600;
@@ -96,8 +96,7 @@
 			$('#rooms-list').append(html);
 			
 			$('#share-link').hide();
-			console.error('setup-new-broadcast called');
-			$('#setup-new-broadcast').hide();
+			$('#screen-share').hide();
 			
 			var joinRoomButton = $('#rooms-list').find('.join');
 			joinRoomButton.attr('data-sessionid', session.sessionid);
